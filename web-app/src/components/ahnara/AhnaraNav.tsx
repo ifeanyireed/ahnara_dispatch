@@ -79,7 +79,7 @@ export const AhnaraNavbar = () => {
                   <Link href="/circle" className="text-sm font-bold text-slate-600 hover:text-indigo-650 transition-colors">
                     Circle
                   </Link>
-                  <Link href="/dashboard/dispatch" className="text-sm font-bold text-slate-600 hover:text-indigo-650 transition-colors mr-2">
+                  <Link href="/queue-desk" className="text-sm font-bold text-slate-600 hover:text-indigo-650 transition-colors mr-2">
                     Dispatch Hub
                   </Link>
                   <Link href={user.role === "KIDS" ? "/kids" : user.role === "SENIORS" ? "/seniors" : "/mama/dashboard"}>

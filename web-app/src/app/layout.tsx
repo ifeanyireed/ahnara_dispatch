@@ -10,8 +10,8 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const metadata: Metadata = {
-  title: "Ahnara Family",
-  description: "Find any business. Anywhere in Nigeria. Discover, book, buy — all in one place.",
+  title: "Ahnara Dispatch",
+  description: "Ahnara Dispatch: Regional emergency dispatch, ambulance fleet registry, and medical transit logistics engine. Every millisecond accounted.",
   icons: {
     icon: "/logo-white.png",
     shortcut: "/logo-white.png",

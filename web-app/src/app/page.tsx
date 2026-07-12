@@ -42,7 +42,7 @@ export default function HomePage() {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2">
-          <Link href="/dashboard/dispatch" id="nav-launch-hub-btn">
+          <Link href="/queue-desk" id="nav-launch-hub-btn">
             <button className="bg-[#1E293B] text-white hover:bg-slate-800 transition-all font-bold px-5 py-2.5 rounded-full text-sm shadow-sm">
               Launch Dispatch Hub
             </button>
@@ -102,7 +102,7 @@ export default function HomePage() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4 mb-10 relative z-20">
-            <Link href="/dashboard/dispatch" id="hero-launch-btn">
+            <Link href="/queue-desk" id="hero-launch-btn">
               <button className="bg-[#1E293B] text-white hover:bg-slate-800 transition-all font-bold px-8 py-3.5 rounded-full shadow-lg whitespace-nowrap flex items-center gap-2 group">
                 Access Admin Portal <IconArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
@@ -166,7 +166,7 @@ export default function HomePage() {
               </div>
               <div className="border-t border-slate-200/60 pt-4 mt-6 flex items-center justify-between">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Queue Table UI</span>
-                <Link href="/dashboard/dispatch?tab=queue" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
+                <Link href="/queue-desk" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
                   Launch Desk &rarr;
                 </Link>
               </div>
@@ -186,7 +186,7 @@ export default function HomePage() {
               </div>
               <div className="border-t border-slate-200/60 pt-4 mt-6 flex items-center justify-between">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Origin/Destination Maps</span>
-                <Link href="/dashboard/dispatch?tab=transfers" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
+                <Link href="/transfers" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
                   Launch Desk &rarr;
                 </Link>
               </div>
@@ -206,7 +206,7 @@ export default function HomePage() {
               </div>
               <div className="border-t border-slate-200/60 pt-4 mt-6 flex items-center justify-between">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Fleet Registry UI</span>
-                <Link href="/dashboard/dispatch?tab=fleet" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
+                <Link href="/fleet" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
                   Launch Registry &rarr;
                 </Link>
               </div>
@@ -226,7 +226,7 @@ export default function HomePage() {
               </div>
               <div className="border-t border-slate-200/60 pt-4 mt-6 flex items-center justify-between">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Vetting Checklists</span>
-                <Link href="/dashboard/dispatch?tab=drivers" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
+                <Link href="/drivers" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
                   Launch Portal &rarr;
                 </Link>
               </div>
@@ -246,7 +246,7 @@ export default function HomePage() {
               </div>
               <div className="border-t border-slate-200/60 pt-4 mt-6 flex items-center justify-between">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Audit Exporter</span>
-                <Link href="/dashboard/dispatch?tab=analytics" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
+                <Link href="/analytics" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
                   Launch Analytics &rarr;
                 </Link>
               </div>
@@ -266,7 +266,7 @@ export default function HomePage() {
               </div>
               <div className="border-t border-slate-200/60 pt-4 mt-6 flex items-center justify-between">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Claim Compiler</span>
-                <Link href="/dashboard/dispatch?tab=billing" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
+                <Link href="/billing" className="text-xs font-black text-[#0089C1] flex items-center gap-1 group-hover:underline">
                   Launch Manager &rarr;
                 </Link>
               </div>
