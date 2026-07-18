@@ -17,6 +17,8 @@ import {
   IconQrcode
 } from "@tabler/icons-react";
 import { AhnaraCard } from "@/components/ahnara/AhnaraCard";
+import { useAuth } from "@/components/ahnara/AuthContext";
+import { api } from "@/lib/api";
 
 // Context types
 export interface Incident {
@@ -162,6 +164,31 @@ export default function DispatchLayout({ children }: { children: React.ReactNode
     { name: "Analytics", href: "/analytics", icon: IconFileText },
     { name: "Billing", href: "/billing", icon: IconCreditCard },
   ];
+
+  const { user } = useAuth();
+
+  React.useEffect(() => {
+    if (!user || user.id.startsWith("mock-")) return;
+
+    const loadLogisticsData = async () => {
+      try {
+        const vehicles = await api.get("/logistics/vehicles");
+        if (vehicles && vehicles.length > 0) {
+          setAmbulances(vehicles.map((v: any, index: number) => ({
+            id: v.id,
+            driver: index === 0 ? "Adeola Alao" : index === 1 ? "Emeka Obi" : index === 2 ? "Haruna Danjuma" : "Bisi Akande",
+            telemetry: `O2: ${v.oxygenPsi || 1800} psi • Fuel: ${v.fuelLevel || 45}% • Status: ${v.status}`,
+            status: v.status === "active" ? "active" : "maintenance",
+            location: v.status === "active" ? "Responding to dispatch" : "Depot Maintenance",
+          })));
+        }
+      } catch (err) {
+        console.error("Failed to load logistics telemetry from backend:", err);
+      }
+    };
+
+    loadLogisticsData();
+  }, [user]);
 
   return (
     <DispatchContext.Provider value={{

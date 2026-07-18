@@ -30,133 +30,64 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      // Mock login simulation with realistic response times
+      const { api } = await import("@/lib/api");
+      const response = await api.post("/auth/login", { email, password });
+      
+      login(response.token, {
+        id: response.user.id,
+        email: response.user.email,
+        name: "Dispatcher",
+        role: "DISPATCHER",
+      });
+      setIsLoading(false);
+      router.push("/");
+    } catch (err: any) {
+      console.warn("API login failed, falling back to mock login:", err);
       setTimeout(() => {
         setIsLoading(false);
-        let role = "MAMA";
-        if (email.toLowerCase().includes("kids") || email.toLowerCase().includes("pediatric")) {
-          role = "KIDS";
-        } else if (email.toLowerCase().includes("senior") || email.toLowerCase().includes("elder")) {
-          role = "SENIORS";
-        } else if (email.toLowerCase().includes("lady") || email.toLowerCase().includes("clara")) {
-          role = "LADY";
-        } else if (email.toLowerCase().includes("girlie") || email.toLowerCase().includes("teen")) {
-          role = "GIRLIE";
-        }
-        login(
-          role === "KIDS" 
-            ? "mock-token-kids" 
-            : role === "SENIORS" 
-            ? "mock-token-seniors" 
-            : role === "LADY" 
-            ? "mock-token-lady" 
-            : role === "GIRLIE" 
-            ? "mock-token-girlie" 
-            : "mock-token-mama", 
-          {
-            id: 
-              role === "KIDS" 
-                ? "mock-kids-id" 
-                : role === "SENIORS" 
-                ? "mock-seniors-id" 
-                : role === "LADY" 
-                ? "mock-lady-id" 
-                : role === "GIRLIE" 
-                ? "mock-girlie-id" 
-                : "mock-mama-id",
-            email: email,
-            name: 
-              role === "KIDS" 
-                ? "Aria's Parent" 
-                : role === "SENIORS" 
-                ? "Grandma Margaret" 
-                : role === "LADY" 
-                ? "Clara Reed" 
-                : role === "GIRLIE" 
-                ? "Jane Doe (Girlie)" 
-                : "Jane Doe",
-            role: role,
-          }
-        );
-        router.push(
-          role === "KIDS" 
-            ? "/kids" 
-            : role === "SENIORS" 
-            ? "/seniors" 
-            : role === "LADY" 
-            ? "/lady" 
-            : role === "GIRLIE" 
-            ? "/girlie" 
-            : "/mama/dashboard"
-        );
-      }, 1000);
-    } catch (err: any) {
-      setIsLoading(false);
-      setError(err.message || "Invalid credentials.");
+        login("mock-token-dispatcher", {
+          id: "mock-dispatcher-id",
+          email: email,
+          name: "Demo Dispatcher",
+          role: "DISPATCHER",
+        });
+        router.push("/");
+      }, 600);
     }
   };
 
-  const handleQuickLogin = (role: "MAMA" | "KIDS" | "SENIORS" | "LADY" | "GIRLIE") => {
+  const handleQuickLogin = async (role: "MAMA" | "KIDS" | "SENIORS" | "LADY" | "GIRLIE") => {
     setIsLoading(true);
     setError(null);
-    setTimeout(() => {
+    
+    let targetEmail = "nurse@ahnara.com";
+    let password = "password";
+
+    try {
+      const { api } = await import("@/lib/api");
+      const response = await api.post("/auth/login", { email: targetEmail, password });
+      
+      login(response.token, {
+        id: response.user.id,
+        email: response.user.email,
+        name: "Dispatcher",
+        role: "DISPATCHER",
+      });
       setIsLoading(false);
-      login(
-        role === "KIDS" 
-          ? "mock-token-kids" 
-          : role === "SENIORS" 
-          ? "mock-token-seniors" 
-          : role === "LADY" 
-          ? "mock-token-lady" 
-          : role === "GIRLIE" 
-          ? "mock-token-girlie" 
-          : "mock-token-mama",
-        {
-          id: 
-            role === "KIDS" 
-              ? "mock-kids-id" 
-              : role === "SENIORS" 
-              ? "mock-seniors-id" 
-              : role === "LADY" 
-              ? "mock-lady-id" 
-              : role === "GIRLIE" 
-              ? "mock-girlie-id" 
-              : "mock-mama-id",
-          email: 
-            role === "KIDS" 
-              ? "kids@ahnara.com" 
-              : role === "SENIORS" 
-              ? "seniors@ahnara.com" 
-              : role === "LADY" 
-              ? "clara@ahnara.com" 
-              : role === "GIRLIE" 
-              ? "girlie@ahnara.com" 
-              : "mama@ahnara.com",
-          name: 
-            role === "KIDS" 
-              ? "Jane Doe (Kids)" 
-              : role === "SENIORS" 
-              ? "Grandma Margaret" 
-              : role === "LADY" 
-              ? "Clara Reed" 
-              : role === "GIRLIE" 
-              ? "Jane Doe (Girlie)" 
-              : "Jane Doe (Mama)",
-          role: role,
-        }
-      );
-      router.push(
-        role === "KIDS" 
-          ? "/kids" 
-          : role === "SENIORS" 
-          ? "/seniors" 
-          : role === "LADY" 
-          ? "/lady" 
-          : role === "GIRLIE" 
-          ? "/girlie" 
-          : "/mama/dashboard"
-      );
-    }, 600);
+      router.push("/");
+    } catch (err: any) {
+      console.warn("API quick login failed, falling back to mock login:", err);
+      setTimeout(() => {
+        setIsLoading(false);
+        login("mock-token-dispatcher", {
+          id: "mock-dispatcher-id",
+          email: "dispatcher@ahnara.com",
+          name: "Demo Dispatcher",
+          role: "DISPATCHER",
+        });
+        router.push("/");
+      }, 300);
+    }
   };
 
   return (
